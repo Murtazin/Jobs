@@ -54,5 +54,16 @@ namespace JobsWeb.Controllers
             }
             return Ok(companies);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<Company>>> DeleteCompany(Guid id)
+        {
+            var companies = await _repository.DeleteCompany(id);
+            if (companies == null)
+            {
+                return BadRequest("Failed to delete company");
+            }
+            return Ok(companies);
+        }
     }
 }

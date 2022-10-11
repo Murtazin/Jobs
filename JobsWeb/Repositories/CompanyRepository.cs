@@ -43,4 +43,19 @@ public class CompanyRepository : ICompanyRepository
             return null;
         }
     }
+
+    public async Task<List<Company>?> DeleteCompany(Guid id)
+    {
+        var company = await _context.Companies.FindAsync(id);
+        if (company != null)
+        {
+            _context.Companies.Remove(company);
+            await _context.SaveChangesAsync();
+            return await _context.Companies.ToListAsync();
+        }
+        else
+        {
+            return null;
+        }
+    }
 }
