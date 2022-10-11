@@ -43,5 +43,16 @@ namespace JobsWeb.Controllers
             var companies = await _repository.AddCompany(company);
             return Ok(companies);
         }
+
+        [HttpPut]
+        public async Task<ActionResult<List<Company>>> UpdateCompany(Company company)
+        {
+            var companies = await _repository.UpdateCompany(company);
+            if (companies == null)
+            {
+                return BadRequest("Failed to update company data");
+            }
+            return Ok(companies);
+        }
     }
 }

@@ -26,4 +26,21 @@ public class CompanyRepository : ICompanyRepository
         await _context.SaveChangesAsync();
         return await _context.Companies.ToListAsync();
     }
+    public async Task<List<Company>?> UpdateCompany(Company requestCompany)
+    {
+        var company = await _context.Companies.FindAsync(requestCompany.Id);
+        if (company != null)
+        {
+            company.Logo = requestCompany.Logo;
+            company.Title = requestCompany.Title;
+            company.Vacancies = requestCompany.Vacancies;
+            company.Responses = requestCompany.Responses;
+            await _context.SaveChangesAsync();
+            return await _context.Companies.ToListAsync();
+        }
+        else
+        {
+            return null;
+        }
+    }
 }
