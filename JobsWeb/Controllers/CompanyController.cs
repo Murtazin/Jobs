@@ -25,5 +25,16 @@ namespace JobsWeb.Controllers
             var companies = await _repository.GetCompanies();
             return Ok(companies);
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Company>> GetCompany(Guid id)
+        {
+            var company = await _repository.GetCompany(id);
+            if (company == null)
+            {
+                return BadRequest("Cannot find company with associated id");
+            }
+            return Ok(company);
+        }
     }
 }

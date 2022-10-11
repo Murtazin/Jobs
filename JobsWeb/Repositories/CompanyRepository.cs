@@ -15,4 +15,8 @@ public class CompanyRepository : ICompanyRepository
     {
         return await _context.Companies.ToListAsync();
     }
+    public async Task<Company> GetCompany(Guid id)
+    {
+        return await _context.Companies.FindAsync(id);
+    }
 }
