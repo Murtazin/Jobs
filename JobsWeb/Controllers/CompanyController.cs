@@ -36,5 +36,12 @@ namespace JobsWeb.Controllers
             }
             return Ok(company);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<List<Company>>> AddCompany(Company company)
+        {
+            var companies = await _repository.AddCompany(company);
+            return Ok(companies);
+        }
     }
 }

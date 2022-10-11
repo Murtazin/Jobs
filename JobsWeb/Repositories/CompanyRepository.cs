@@ -1,5 +1,6 @@
 using Jobs.Models;
 using JobsWeb.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace JobsWeb.Repositories;
@@ -15,8 +16,14 @@ public class CompanyRepository : ICompanyRepository
     {
         return await _context.Companies.ToListAsync();
     }
-    public async Task<Company> GetCompany(Guid id)
+    public async Task<Company?> GetCompany(Guid id)
     {
         return await _context.Companies.FindAsync(id);
+    }
+    public async Task<List<Company>> AddCompany(Company company)
+    {
+        await _context.Companies.AddAsync(company);
+        await _context.SaveChangesAsync();
+        return await _context.Companies.ToListAsync();
     }
 }
