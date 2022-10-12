@@ -1,4 +1,4 @@
-using Jobs.Models;
+using JobsWeb.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace JobsWeb;

@@ -1,21 +1,22 @@
-using Jobs.Enums;
+using JobsWeb.Enums;
 
-namespace Jobs.Models;
+namespace JobsWeb.Models;
 
 public class User
 {
     public Guid Id { get; set; }
+    public bool IsLoggedIn { get; set; }
+    public string? Logo { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string PhoneNumber { get; set; }
+    public string? MailAddress { get; set; }
+    public string Citizenship { get; set; }
+    public string CurrentCity { get; set; }
+    public string PasswordHash { get; set; }
+    public string Token { get; set; }
     public Sex Sex { get; set; }
     public DateTime DateOfBirth { get; set; }
-    public Boolean IsLoggedIn { get; set; }
-    public String FirstName { get; set; }
-    public String LastName { get; set; }
-    public String PhoneNumber { get; set; }
-    public String MailAddress { get; set; }
-    public String Citizenship { get; set; }
-    public String CurrentCity { get; set; }
-    public String PasswordHash { get; set; }
-    public String Token { get; set; }
     public List<Response>? Responses { get; set; }
     public List<Chat>? Chats { get; set; }
     public List<Summary>? Summaries { get; set; }

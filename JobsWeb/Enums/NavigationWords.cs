@@ -1,4 +1,4 @@
-namespace Jobs.Enums;
+namespace JobsWeb.Enums;
 
 public enum NavigationWords
 {

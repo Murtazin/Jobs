@@ -1,4 +1,4 @@
-using Jobs.Models;
+using JobsWeb.Models;
 using JobsWeb.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

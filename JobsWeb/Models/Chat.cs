@@ -1,4 +1,6 @@
-namespace Jobs.Models;
+using JobsWeb.Models;
+
+namespace JobsWeb.Models;
 
 public class Chat
 {
