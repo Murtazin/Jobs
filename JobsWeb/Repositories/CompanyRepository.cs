@@ -33,6 +33,9 @@ public class CompanyRepository : ICompanyRepository
         {
             company.Logo = requestCompany.Logo;
             company.Title = requestCompany.Title;
+            company.Description = requestCompany.Description;
+            company.WebSite = requestCompany.WebSite;
+            company.Chats = requestCompany.Chats;
             company.Vacancies = requestCompany.Vacancies;
             company.Responses = requestCompany.Responses;
             await _context.SaveChangesAsync();
