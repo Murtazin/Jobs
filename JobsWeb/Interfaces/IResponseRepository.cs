@@ -4,5 +4,5 @@ namespace JobsWeb.Interfaces;
 
 public interface IResponseRepository
 {
-    Task<List<Response>> AddResponse(Response response);
+    Task<List<Response>> AddResponse(ResponseDTO response);
 }

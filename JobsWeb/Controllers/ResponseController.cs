@@ -21,7 +21,7 @@ namespace JobsWeb.Controllers
         }
         
         [HttpPost]
-        public async Task<ActionResult<List<Response>>> AddResponse(Response response)
+        public async Task<ActionResult<List<Response>>> AddResponse(ResponseDTO response)
         {
             var responses = await _repository.AddResponse(response);
             return Ok(responses);
