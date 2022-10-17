@@ -11,6 +11,7 @@ public class Summary
     public string? LastPosition { get; set; }
     public string? InstitutionTitle { get; set; }
     public string? InstitutionFaculty { get; set; }
+    public string Position { get; set; }
     public int? WorkingExperienceDuration { get; set; }
     public int? GraduationYear { get; set; }
     public User User { get; set; }

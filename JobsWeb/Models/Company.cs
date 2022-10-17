@@ -12,4 +12,5 @@ public class Company
     public List<Vacancy>? Vacancies { get; set; }
     public List<Response>? Responses { get; set; }
     public List<Chat>? Chats { get; set; }
+    public List<Review>? Reviews { get; set; }
 }
