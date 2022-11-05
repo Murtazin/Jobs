@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using JobsWeb;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace JobsWeb.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20221105182435_VacancySpecializationMigration")]
+    partial class VacancySpecializationMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -374,8 +376,14 @@ namespace JobsWeb.Migrations
                     b.Property<List<string>>("KeySkills")
                         .HasColumnType("text[]");
 
+                    b.Property<string>("Location")
+                        .HasColumnType("text");
+
                     b.Property<Guid>("ManagerId")
                         .HasColumnType("uuid");
+
+                    b.Property<int[]>("NavigationWords")
+                        .HasColumnType("integer[]");
 
                     b.Property<string>("OfficeAddress")
                         .IsRequired()
