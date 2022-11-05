@@ -5,7 +5,7 @@ namespace JobsWeb.Models;
 public class User
 {
     public Guid Id { get; set; }
-    public bool IsLoggedIn { get; set; }
+    public bool? IsLoggedIn { get; set; }
     public string? Logo { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }

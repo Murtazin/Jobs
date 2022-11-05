@@ -1,6 +1,6 @@
 namespace JobsWeb.Models;
 
-public class Message
+public class UserMessage
 {
     public Guid Id { get; set; }
     public bool IsViewed { get; set; }

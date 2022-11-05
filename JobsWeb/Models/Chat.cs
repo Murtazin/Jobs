@@ -8,5 +8,6 @@ public class Chat
     public DateTime LastMessageSentTime { get; set; }
     public Vacancy Vacancy { get; set; }
     public User User { get; set; }
-    public List<Message> Messages { get; set; }
+    public List<UserMessage>? UserMessages { get; set; }
+    public List<ManagerMessage>? ManagerMessages { get; set; }
 }
