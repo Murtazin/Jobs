@@ -49,6 +49,10 @@ namespace JobsWeb.Controllers
         public async Task<ActionResult<List<Vacancy>>> AddVacancy(VacancyDTO vacancy, Guid companyId, Guid managerId)
         {
             var vacancies = await _repository.AddVacancy(vacancy, companyId, managerId);
+            if (vacancies == null)
+            {
+                return BadRequest("Cannot create vacancy");
+            }
             return Ok(vacancies);
         }
     }

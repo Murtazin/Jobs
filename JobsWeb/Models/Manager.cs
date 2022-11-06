@@ -7,8 +7,7 @@ public class Manager
     public string LastName { get; set; }
     public string PhoneNumber { get; set; }
     public string MailAddress { get; set; }
-    public string PasswordHash { get; set; }
-    public string Token { get; set; }
+    public string City { get; set; }
     public Company Company { get; set; }
     public List<Chat>? Chats { get; set; }
 }

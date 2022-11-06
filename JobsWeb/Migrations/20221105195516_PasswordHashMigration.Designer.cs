@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using JobsWeb;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace JobsWeb.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20221105195516_PasswordHashMigration")]
+    partial class PasswordHashMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -424,7 +426,7 @@ namespace JobsWeb.Migrations
             modelBuilder.Entity("JobsWeb.Models.Manager", b =>
                 {
                     b.HasOne("JobsWeb.Models.Company", "Company")
-                        .WithMany()
+                        .WithMany("Managers")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -539,6 +541,8 @@ namespace JobsWeb.Migrations
 
             modelBuilder.Entity("JobsWeb.Models.Company", b =>
                 {
+                    b.Navigation("Managers");
+
                     b.Navigation("Reviews");
 
                     b.Navigation("Vacancies");

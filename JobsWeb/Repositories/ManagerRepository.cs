@@ -1,0 +1,49 @@
+using JobsWeb.Interfaces;
+using JobsWeb.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace JobsWeb.Repositories;
+
+public class ManagerRepository : IManagerRepository
+{
+    private readonly DataBaseContext _context;
+
+    public ManagerRepository(DataBaseContext context)
+    {
+        this._context = context;
+    }
+
+    public async Task<List<Manager>> GetManagers()
+    {
+        return await _context.Managers.ToListAsync();
+    }
+
+    public async Task<Manager?> GetManager(Guid id)
+    {
+        return await _context.Managers.FindAsync(id);
+    }
+
+    public async Task<List<Manager>> AddManager(ManagerDTO manager)
+    {
+        var companies = await _context.Companies.Where(company =>
+                company.Title == manager.CompanyTitle)
+            .ToListAsync();
+
+        var company = companies.FirstOrDefault(new Company { Id = new Guid(), Title = manager.CompanyTitle });
+
+        var newManager = new Manager
+        {
+            Id = new Guid(),
+            City = manager.City,
+            FirstName = manager.FirstName,
+            LastName = manager.LastName,
+            MailAddress = manager.MailAddress,
+            PhoneNumber = manager.PhoneNumber,
+            Company = company
+        };
+
+        await _context.Managers.AddAsync(newManager);
+        await _context.SaveChangesAsync();
+        return await _context.Managers.ToListAsync();
+    }
+}
