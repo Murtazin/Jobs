@@ -46,4 +46,38 @@ public class ManagerRepository : IManagerRepository
         await _context.SaveChangesAsync();
         return await _context.Managers.ToListAsync();
     }
+
+    public async Task<List<Manager>?> UpdateManager(ManagerPutDTO modifiedManager)
+    {
+        var manager = await _context.Managers.FindAsync(modifiedManager.Id);
+        if (manager != null)
+        {
+            manager.City = modifiedManager.City;
+            manager.FirstName = modifiedManager.FirstName;
+            manager.LastName = modifiedManager.LastName;
+            manager.MailAddress = modifiedManager.MailAddress;
+            manager.PhoneNumber = modifiedManager.PhoneNumber;
+            await _context.SaveChangesAsync();
+            return await _context.Managers.ToListAsync();
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public async Task<List<Manager>?> DeleteManager(Guid id)
+    {
+        var manager = await _context.Managers.FindAsync(id);
+        if (manager != null)
+        {
+            _context.Managers.Remove(manager);
+            await _context.SaveChangesAsync();
+            return await _context.Managers.ToListAsync();
+        }
+        else
+        {
+            return null;
+        }
+    }
 }
