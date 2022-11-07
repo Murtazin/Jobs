@@ -54,4 +54,40 @@ public class VacancyRepository : IVacancyRepository
         await _context.SaveChangesAsync();
         return await _context.Vacancies.ToListAsync();
     }
+
+    public async Task<List<Vacancy>?> UpdateVacancy(VacancyDTO modifiedVacancy, Guid vacancyId)
+    {
+        var vacancy = await _context.Vacancies.FindAsync(vacancyId);
+        if (vacancy != null)
+        {
+            vacancy.Busyness = modifiedVacancy.Busyness;
+            vacancy.Description = modifiedVacancy.Description;
+            vacancy.Position = modifiedVacancy.Position;
+            vacancy.OfficeAddress = modifiedVacancy.OfficeAddress;
+            vacancy.Specialization = modifiedVacancy.Specialization;
+            vacancy.RequiredExperience = modifiedVacancy.RequiredExperience;
+            vacancy.KeySkills = modifiedVacancy.KeySkills;
+            await _context.SaveChangesAsync();
+            return await _context.Vacancies.ToListAsync();
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public async Task<List<Vacancy>?> DeleteVacancy(Guid id)
+    {
+        var vacancy = await _context.Vacancies.FindAsync(id);
+        if (vacancy != null)
+        {
+            _context.Vacancies.Remove(vacancy);
+            await _context.SaveChangesAsync();
+            return await _context.Vacancies.ToListAsync();
+        }
+        else
+        {
+            return null;
+        }
+    }
 }

@@ -14,19 +14,19 @@ namespace JobsWeb.Controllers
     public class VacancyController : ControllerBase
     {
         private readonly IVacancyRepository _repository;
-        
+
         public VacancyController(IVacancyRepository repository)
         {
             this._repository = repository;
         }
-        
+
         [HttpGet]
         public async Task<ActionResult<List<Vacancy>>> GetVacancies()
         {
             var vacancies = await _repository.GetVacancies();
             return Ok(vacancies);
         }
-        
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Vacancy>> GetVacancy(Guid id)
         {
@@ -35,6 +35,7 @@ namespace JobsWeb.Controllers
             {
                 return BadRequest("Cannot find vacancy with associated id");
             }
+
             return Ok(vacancy);
         }
 
@@ -53,6 +54,31 @@ namespace JobsWeb.Controllers
             {
                 return BadRequest("Cannot create vacancy");
             }
+
+            return Ok(vacancies);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<List<Vacancy>>> UpdateVacancy(VacancyDTO modifiedVacancy, Guid vacancyId)
+        {
+            var vacancies = await _repository.UpdateVacancy(modifiedVacancy, vacancyId);
+            if (vacancies == null)
+            {
+                return BadRequest("Failed to update vacancy data");
+            }
+
+            return Ok(vacancies);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<Vacancy>>> DeleteVacancy(Guid id)
+        {
+            var vacancies = await _repository.DeleteVacancy(id);
+            if (vacancies == null)
+            {
+                return BadRequest("Failed to delete vacancy");
+            }
+        
             return Ok(vacancies);
         }
     }
